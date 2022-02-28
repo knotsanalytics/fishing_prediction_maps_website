@@ -9,8 +9,9 @@ export interface LegendProps extends FlexProps {
 
 const Legend: React.FC<LegendProps> = ({ colorScheme, show, ...props }) => {
   const getGradient = (val: string | null) => {
-    if (val === "greens") return "linear(to-r, #C9FAE2, #20CE92, #004535)";
-    else if (val === "grays") return "linear(to-r, #F1F2F4, #CACFD5, #5F6774)";
+    if (val === "turbo")
+      return `linear(to-r, #30123b, #1ccdd8, #1ce6b4, #dfdf37, #f46617, #810602)`;
+    else if (val === "grays") return "linear(to-r, #F1F2F4, #CACFD5, #920b01)";
     else return "linear(to-r, #313695, #fffbb9, #a50026)";
   };
   return (

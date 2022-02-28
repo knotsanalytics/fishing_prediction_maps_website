@@ -5,7 +5,7 @@ import axios from "axios";
 // Styles
 import "./App.css";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { divergent, greens, grays } from "./lib/colorSchemes";
+import { RdYlBu, turbo, grays } from "./lib/colorSchemes";
 import {
   getAreaIndicatorColor,
   getBathimetry1000Color,
@@ -33,6 +33,7 @@ import {
   knotsSpecie,
   knotsArea,
   Theme,
+  MapStyle,
 } from "./lib/customTypes";
 import Legend from "./components/Legend";
 import Credits from "./components/Credits";
@@ -51,7 +52,7 @@ function App() {
   const darkMode = useColorMode();
   // User stored map style (light | dark | gray)
   const theme = localStorage.getItem("theme");
-  // User stored color scheme (divergent | greens | grays)
+  // User stored color scheme (RdYlBu | turbo | grays)
   const storedColorScheme = localStorage.getItem("colorScheme");
   // Ref of the base map
   const mapRef = React.useRef<any>();
@@ -208,21 +209,21 @@ function App() {
 
   const handleDarkTheme = (theme: string) => {
     if (theme === Theme.DARK) {
-      setMapStyle("mapbox://styles/mapbox/dark-v10");
+      setMapStyle(MapStyle.DARK);
       darkMode.setColorMode("dark");
     } else if (theme === Theme.LIGHT) {
-      setMapStyle("mapbox://styles/mapbox/streets-v11");
+      setMapStyle(MapStyle.LIGHT);
       darkMode.setColorMode("light");
     } else if (theme === Theme.GRAY) {
-      setMapStyle("mapbox://styles/mapbox/light-v10");
+      setMapStyle(MapStyle.GRAY);
       darkMode.setColorMode("light");
     }
     localStorage.setItem("theme", theme);
   };
 
   const handleColorScheme = (scheme: string) => {
-    if (scheme === "divergent") setColorScheme(divergent);
-    else if (scheme === "greens") setColorScheme(greens);
+    if (scheme === "RdYlBu") setColorScheme(RdYlBu);
+    else if (scheme === "turbo") setColorScheme(turbo);
     else if (scheme === "grays") setColorScheme(grays);
     localStorage.setItem("colorScheme", scheme);
   };
@@ -382,6 +383,7 @@ function App() {
 
   // Show toast
   const onMapError = useCallback((e) => {
+    console.log(e);
     toast({
       title: `Uh oh, something went wrong.`,
       status: "error",
@@ -594,8 +596,8 @@ function App() {
         onItemSelect={handleColorScheme}
         label={"Select a color scheme"}
         icon={"color"}
-        values={["divergent", "greens", "grays"]}
-        bgImg={colorScheme === divergent ? "/grays.png" : "divergent.png"}
+        values={["RdYlBu", "turbo", "grays"]}
+        bgImg={colorScheme === RdYlBu ? "/grays.png" : "RdYlBu.png"}
         defaultValue={storedColorScheme ? storedColorScheme : "grays"}
         show={!!selectedSpecie}
       />
@@ -622,7 +624,7 @@ function App() {
       />
 
       <Credits position={"absolute"} top={4} right={4} />
-      {data && (
+      {data && data.slides && (
         <IntroModal isModalOpen={isIntroModalOpen} content={data.slides} />
       )}
     </Box>

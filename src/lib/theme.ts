@@ -1,4 +1,4 @@
-import { divergent, grays, greens } from "./colorSchemes";
+import { RdYlBu, grays, turbo } from "./colorSchemes";
 import { Theme } from "./customTypes";
 
 export const getInitialTheme = (theme: string | null, mode: string) => {
@@ -20,12 +20,12 @@ export const getInitialTheme = (theme: string | null, mode: string) => {
 
 export const getInitialColorScheme = (scheme: string | null) => {
   if (scheme) {
-    if (scheme === "divergent") return divergent;
-    else if (scheme === "greens") return greens;
+    if (scheme === "RdYlBu") return RdYlBu;
+    else if (scheme === "turbo") return turbo;
     else if (scheme === "grays") return grays;
   } else {
-    localStorage.setItem("colorScheme", "divergent");
-    return divergent;
+    localStorage.setItem("colorScheme", "RdYlBu");
+    return RdYlBu;
   }
 };
 

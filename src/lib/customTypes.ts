@@ -43,3 +43,9 @@ export enum Theme {
   LIGHT = "light",
   GRAY = "gray",
 }
+
+export enum MapStyle {
+  DARK = "mapbox://styles/mapbox/dark-v10",
+  LIGHT = "mapbox://styles/mapbox/streets-v11",
+  GRAY = "mapbox://styles/mapbox/light-v10",
+}
