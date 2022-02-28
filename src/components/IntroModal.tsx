@@ -13,31 +13,45 @@ import {
   ModalFooter,
   Heading,
   useColorMode,
+  TextProps,
+  HeadingProps,
 } from "@chakra-ui/react";
+import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 import React, { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
 
-const steps = [
-  {
-    title: "Fishing Prediction Map",
-    description: "Weekly AI based Predictions for the mediterranean sea",
-    imgSrc: "/steps/step1.png",
-  },
-  {
-    title: "See how likely you can fish a specie for a given area",
-    description: `We use machine learning and predictive analytics to provide a prediction of the future fishing probability (FP) per species and area in the Mediterranean sea.`,
-    imgSrc: "/steps/step2.png",
-  },
-  {
-    title: "About the map",
-    description:
-      "The value we display is on a scale from zero to one, from the lowest probability of fishing to the highest. Our predictive models are created using historical fishing data from the fleet in the Mediterrenean coupled with environmental data and mathematical models.",
-    imgSrc: "/steps/step3.png",
-  },
-];
+const images = ["/steps/step1.png", "/steps/step2.png", "/steps/step3.png"];
 
-export type IntroModalProps = { isModalOpen: boolean };
+const customMDTheme = {
+  p: (props: TextProps) => {
+    const { children } = props;
+    return (
+      <Text mb={4} fontSize="md" textAlign={"center"}>
+        {children}
+      </Text>
+    );
+  },
+  h1: (props: HeadingProps) => {
+    const { children } = props;
+    return (
+      <Heading as={"h1"} textAlign={"center"} size="xl" mb={4}>
+        {children}
+      </Heading>
+    );
+  },
+  h2: (props: HeadingProps) => {
+    const { children } = props;
+    return (
+      <Heading as={"h2"} textAlign={"center"} size="md" mb={4}>
+        {children}
+      </Heading>
+    );
+  },
+};
 
-const IntroModal: React.FC<IntroModalProps> = ({ isModalOpen }) => {
+export type IntroModalProps = { isModalOpen: boolean; content: string[] };
+
+const IntroModal: React.FC<IntroModalProps> = ({ isModalOpen, content }) => {
   const [stepIdx, setStepIdx] = useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -63,22 +77,16 @@ const IntroModal: React.FC<IntroModalProps> = ({ isModalOpen }) => {
             <Image
               objectFit="contain"
               w={"100%"}
-              src={steps[stepIdx].imgSrc}
+              src={images[stepIdx]}
               alt="Fishing Prediction map screenshot"
             />
           </Box>
           <Box pt={6} pl={6} pr={6}>
-            {stepIdx === 0 ? (
-              <Heading as={"h1"} textAlign={"center"} size="xl" mb={4}>
-                {steps[stepIdx]?.title}
-              </Heading>
-            ) : (
-              <Heading as={"h2"} textAlign={"center"} size="md" mb={4}>
-                {steps[stepIdx]?.title}
-              </Heading>
-            )}
-
-            <Text textAlign={"center"}>{steps[stepIdx]?.description}</Text>
+            <ReactMarkdown
+              components={ChakraUIRenderer(customMDTheme)}
+              children={content[stepIdx]}
+              skipHtml
+            />
           </Box>
         </ModalBody>
         <ModalFooter>
@@ -97,12 +105,12 @@ const IntroModal: React.FC<IntroModalProps> = ({ isModalOpen }) => {
               color: lightMode ? "indigo.100" : "zinc.700",
             }}
             onClick={() => {
-              stepIdx === steps.length - 1
+              stepIdx === content.length - 1
                 ? onClose()
                 : setStepIdx(stepIdx + 1);
             }}
           >
-            {stepIdx === steps.length - 1 ? "Close" : "Next"}
+            {stepIdx === content.length - 1 ? "Close" : "Next"}
           </Button>
         </ModalFooter>
       </ModalContent>

@@ -9,25 +9,49 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-  DrawerHeader,
+  Image,
   DrawerBody,
   Heading,
   Text,
-  chakra,
+  TextProps,
 } from "@chakra-ui/react";
 import React from "react";
 import Card from "./Card";
+import ChakraUIRenderer from "chakra-ui-markdown-renderer";
+import ReactMarkdown from "react-markdown";
+import { HeadingProps } from "react-markdown/lib/ast-to-react";
+
+const customMDTheme = {
+  p: (props: TextProps) => {
+    const { children } = props;
+    return (
+      <Text mb={4} fontSize="md">
+        {children}
+      </Text>
+    );
+  },
+  h3: (props: HeadingProps) => {
+    const { children } = props;
+    return (
+      <Heading as={"h3"} size="md" mb={4} mt={8}>
+        {children}
+      </Heading>
+    );
+  },
+};
 
 export interface InfoProps extends FlexProps {
   label: string;
+  content: string;
 }
 
-const Info: React.FC<InfoProps> = ({ label, ...props }) => {
+const Info: React.FC<InfoProps> = ({ label, content, ...props }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef<any>();
-  const bg = useColorModeValue("white", "zinc.700");
+  const bg = useColorModeValue("indigo.50", "zinc.700");
   const bgHover = useColorModeValue("gray.100", "zinc.800");
   const txt = useColorModeValue("zinc.700", "white");
+
   return (
     <>
       <Card {...props} p={0}>
@@ -73,43 +97,26 @@ const Info: React.FC<InfoProps> = ({ label, ...props }) => {
           placement="left"
           onClose={onClose}
           finalFocusRef={btnRef}
-          size={"lg"}
+          size={"sm"}
         >
           <DrawerOverlay />
           <DrawerContent bg={bg}>
             <DrawerCloseButton />
-            <DrawerHeader>Fishing Predictions Maps</DrawerHeader>
 
             <DrawerBody>
-              <Text fontSize="md" mb={4}>
-                Fishing Prediction Maps provides a unique service in the
-                Mediterrenean sea: given a species and an area, our maps display
-                the fishing probability (FP) for the next week.
-              </Text>
-              <Text fontSize="md" mb={10}>
-                Using environmental data and artificial intelligence we are able
-                to predict the areas where it will be better or worse to fish.
-              </Text>
-              <Heading as={"h3"} size="md" mb={4}>
-                How Does it work
-              </Heading>
-              <Text fontSize="md" mb={4}>
-                The predictive models were created using historical fishing data
-                from the fleet in the Mediterrenean coupled with environmental
-                data and mathematical models. Every week new maps are created
-                with updated forecasting data.
-              </Text>
-              <Text fontSize="md" mb={4}>
-                The displayed value is on a scale from 0 to 1 - from the lowest
-                to the highest{" "}
-                <chakra.span fontWeight={"bold"}>
-                  fishing probability (FP).
-                </chakra.span>
-              </Text>
-              <Text fontSize="md" mb={6}>
-                The results have been reviewd and confirmed by experts in the
-                field and are now available fro anyone to see.
-              </Text>
+              <Image
+                objectFit="contain"
+                w={64}
+                src={"/logo.png"}
+                alt="Fishing Prediction map screenshot"
+                margin={"auto"}
+                mt={10}
+              />
+              <ReactMarkdown
+                components={ChakraUIRenderer(customMDTheme)}
+                children={content}
+                skipHtml
+              />
             </DrawerBody>
           </DrawerContent>
         </Drawer>

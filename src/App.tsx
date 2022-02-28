@@ -563,12 +563,16 @@ function App() {
         />
       )}
       {/* Info Drawer */}
-      <Info
-        position={"absolute"}
-        label={"Info about this map"}
-        left={4}
-        top={36}
-      />
+      {data && (
+        <Info
+          position={"absolute"}
+          label={"Info about this map"}
+          left={4}
+          top={36}
+          content={data.info}
+        />
+      )}
+
       {/* Map Style Picker */}
       <RadioGroupBtn
         position={"absolute"}
@@ -618,7 +622,9 @@ function App() {
       />
 
       <Credits position={"absolute"} top={4} right={4} />
-      <IntroModal isModalOpen={isIntroModalOpen} />
+      {data && (
+        <IntroModal isModalOpen={isIntroModalOpen} content={data.slides} />
+      )}
     </Box>
   );
 }

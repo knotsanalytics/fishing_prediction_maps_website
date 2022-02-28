@@ -6,6 +6,8 @@ export type knotsData = {
   lat_init: number;
   lon_init: number;
   zoom_init: number;
+  info: string;
+  slides: string[];
 };
 
 export type knotsArea = {
