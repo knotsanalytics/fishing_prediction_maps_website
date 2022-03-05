@@ -1,1 +1,3 @@
-# Getting Started with Create React App
+# Fishing prediction maps
+
+👉 [Website](https://fishingpredictionmaps.com/) 👈
