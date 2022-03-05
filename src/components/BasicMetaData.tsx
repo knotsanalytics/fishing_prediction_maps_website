@@ -42,7 +42,7 @@ export default function BasicMeta({
       <meta name="theme-color" content="#fefefe" />
 
       <meta property="og:title" content={title ? title : config.site_title} />
-      <meta property="og:image" content="/images/sharePic.png" />
+      <meta property="og:image" content="/sharePic.png" />
       <meta
         property="og:description"
         content={description ? description : config.site_description}
