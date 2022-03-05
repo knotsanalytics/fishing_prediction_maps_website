@@ -46,7 +46,6 @@ import {
   MapBoxAccessToken,
   MapTilerURL,
 } from "./lib/endpoints";
-import BasicMeta from "./components/BasicMetaData";
 
 function App() {
   // Chakras stored color mode (light | dark)
@@ -401,7 +400,6 @@ function App() {
 
   return (
     <Box position={"relative"} h={"100vh"} w={"100vw"}>
-      <BasicMeta url="/" />
       {/* Base Map */}
       <Map
         id="myMap"
