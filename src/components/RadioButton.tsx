@@ -6,9 +6,11 @@ import {
   useRadio,
 } from "@chakra-ui/react";
 
-export interface RadioButtonProps extends RadioProps {}
+export interface RadioButtonProps extends RadioProps {
+  idx: number;
+}
 
-const RadioButton: React.FC<RadioButtonProps> = ({ ...props }) => {
+const RadioButton: React.FC<RadioButtonProps> = ({ idx, ...props }) => {
   const { getInputProps, getCheckboxProps } = useRadio(props);
 
   const input = getInputProps();
@@ -18,7 +20,12 @@ const RadioButton: React.FC<RadioButtonProps> = ({ ...props }) => {
 
   return (
     <Box as="label" w={["100%", "auto"]}>
-      <input {...input} />
+      <input {...input} id={idx + "radio-button"} />
+      <label
+        htmlFor={idx + "radio-button"}
+        aria-label="radio button"
+        style={{ visibility: "hidden" }}
+      ></label>
       <Box
         {...checkbox}
         cursor="pointer"

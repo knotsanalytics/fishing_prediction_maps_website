@@ -17,7 +17,14 @@ const RadioButtonImg: React.FC<RadioButtonImgProps> = ({
 
   return (
     <Box as="label">
-      <input {...input} />
+      <input {...input} id={val} />
+      <label
+        htmlFor={val}
+        aria-label="radio button"
+        style={{ visibility: "hidden" }}
+      >
+        {val}
+      </label>
       <Box
         {...checkbox}
         cursor="pointer"

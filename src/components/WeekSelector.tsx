@@ -69,7 +69,7 @@ const WeekSelector: React.FC<WeekSelectorProps> = ({
         {options.map((value, idx) => {
           const radio = getRadioProps({ value });
           return (
-            <RadioButton key={`${value}${idx}`} {...radio}>
+            <RadioButton key={`${value}${idx}`} {...radio} idx={idx}>
               {new Date(value).toLocaleDateString("en-GB", {
                 weekday: "short",
               })}

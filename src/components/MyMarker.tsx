@@ -32,7 +32,6 @@ const MyMarker: React.FC<MyMarkerProps> = ({
   closePopup,
   date,
 }) => {
-  const ref = React.useRef<any>();
   const [showPopup, setShowPopup] = useState(marker.active);
   useEffect(() => {
     if (closePopup) setShowPopup(false);

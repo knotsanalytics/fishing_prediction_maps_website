@@ -13,7 +13,6 @@ import {
   useRadioGroup,
   Text,
   useColorModeValue,
-  Image,
   Icon,
   Tooltip,
   chakra,
@@ -80,6 +79,7 @@ const RadioGroupBtn: React.FC<RadioGroupBtnProps> = ({
                   borderWidth: 3,
                   bg: bgHover,
                 }}
+                aria-label="open style selctor popup"
               >
                 <Icon
                   viewBox="0 0 200 200"

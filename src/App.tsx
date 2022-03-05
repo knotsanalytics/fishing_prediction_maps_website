@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { Map, Source, Layer } from "react-map-gl";
-import mapboxgl, { FillLayer } from "mapbox-gl";
+import { FillLayer } from "mapbox-gl";
 import axios from "axios";
 // Styles
 import "./App.css";
@@ -46,6 +46,7 @@ import {
   MapBoxAccessToken,
   MapTilerURL,
 } from "./lib/endpoints";
+import BasicMeta from "./components/BasicMetaData";
 
 function App() {
   // Chakras stored color mode (light | dark)
@@ -252,10 +253,6 @@ function App() {
   };
 
   const handleAreaOptionHover = (id: string) => {
-    // mapRef.current.flyTo({
-    //   center: [data?.lon_init, data?.lat_init],
-    //   zoom: data?.zoom_init,
-    // });
     setAreaIndicator(id);
     if (id === "leave") setAreaIndicator("");
   };
@@ -404,6 +401,7 @@ function App() {
 
   return (
     <Box position={"relative"} h={"100vh"} w={"100vw"}>
+      <BasicMeta url="/" />
       {/* Base Map */}
       <Map
         id="myMap"

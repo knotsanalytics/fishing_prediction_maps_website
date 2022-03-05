@@ -9,12 +9,15 @@ import "@fontsource/ibm-plex-sans/400.css";
 import "@fontsource/ibm-plex-sans/500.css";
 import "@fontsource/ibm-plex-sans/700.css";
 import { theme } from "./styles/theme";
+import { HelmetProvider } from "react-helmet-async";
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       <MapProvider>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <App />
+        <HelmetProvider>
+          <App />
+        </HelmetProvider>
       </MapProvider>
     </ChakraProvider>
   </React.StrictMode>,

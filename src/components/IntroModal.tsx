@@ -20,7 +20,7 @@ import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
-const images = ["/steps/step1.png", "/steps/step2.png", "/steps/step3.png"];
+const images = ["/steps/step1.webp", "/steps/step2.webp", "/steps/step3.webp"];
 
 const customMDTheme = {
   p: (props: TextProps) => {
@@ -79,6 +79,7 @@ const IntroModal: React.FC<IntroModalProps> = ({ isModalOpen, content }) => {
               w={"100%"}
               src={images[stepIdx]}
               alt="Fishing Prediction map screenshot"
+              loading="eager"
             />
           </Box>
           <Box pt={6} pl={6} pr={6}>

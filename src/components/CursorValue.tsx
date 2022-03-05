@@ -1,4 +1,4 @@
-import { SlideFade, Box, FlexProps, Text, Tag } from "@chakra-ui/react";
+import { SlideFade, Box, FlexProps, Tag } from "@chakra-ui/react";
 import Card from "./Card";
 
 export interface CursorValueProps extends FlexProps {

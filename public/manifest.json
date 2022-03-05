@@ -1,9 +1,9 @@
 {
-  "short_name": "Knots",
-  "name": "Mediterranean Fishing Predictions",
+  "short_name": "Fishing prediction maps",
+  "name": "Fishing prediction maps",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "favicon.svg",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
@@ -18,7 +18,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/?utm_source=homescreen",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"

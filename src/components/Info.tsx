@@ -68,6 +68,7 @@ const Info: React.FC<InfoProps> = ({ label, content, ...props }) => {
           fontSize={"sm"}
         >
           <Button
+            aria-label="open info drawer"
             ref={btnRef}
             onClick={onOpen}
             p={2}
