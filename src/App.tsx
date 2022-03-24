@@ -16,7 +16,7 @@ import {
   getLandBufferColor,
   getOnlyLandColor,
 } from "./lib/theme";
-import { Box, useColorMode, useToast } from "@chakra-ui/react";
+import { Box, Icon, useColorMode, useToast } from "@chakra-ui/react";
 
 // Components
 import WeekSelector from "./components/WeekSelector";
@@ -46,6 +46,7 @@ import {
   MapBoxAccessToken,
   MapTilerURL,
 } from "./lib/endpoints";
+import BearingControl from "./components/BearingControl";
 
 function App() {
   // Chakras stored color mode (light | dark)
@@ -61,6 +62,7 @@ function App() {
   const [lng, setLng] = useState(14.175154);
   const [lat, setLat] = useState(39.317717);
   const [zoom, setZoom] = useState(4);
+  const [bearing, setBearing] = useState(0);
 
   // Base Map Style
   const [mapStyle, setMapStyle] = useState(
@@ -418,6 +420,7 @@ function App() {
         cursor={cursor}
         onDrag={onMouseDrag}
         onDragEnd={onMouseDragEnd}
+        onRotate={(e) => setBearing(e.viewState.bearing)}
         onClick={onMouseClick}
         onMouseMove={onMouseMove}
         onIdle={onIdle}
@@ -598,6 +601,17 @@ function App() {
         show={!!selectedSpecie}
       />
       <ZoomControls position={"absolute"} right={4} bottom={28} />
+
+      {bearing !== 0 && (
+        <BearingControl
+          right={4}
+          bottom={48}
+          mb="4"
+          position={"absolute"}
+          bearing={bearing}
+          onClick={() => mapRef.current.rotateTo(0)}
+        />
+      )}
 
       <CursorValue
         lng={lng}

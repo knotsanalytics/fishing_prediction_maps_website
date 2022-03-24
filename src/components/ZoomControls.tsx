@@ -1,5 +1,5 @@
 import { Button, FlexProps, Icon } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useMap } from "react-map-gl";
 import Card from "./Card";
 
@@ -7,7 +7,6 @@ export interface ZoomControlsProps extends FlexProps {}
 
 const ZoomControls: React.FC<ZoomControlsProps> = ({ ...props }) => {
   const { myMap } = useMap();
-  //
 
   return (
     <Card {...props} flexDirection="column" p={0}>
