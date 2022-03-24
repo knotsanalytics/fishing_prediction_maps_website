@@ -13,7 +13,7 @@ const Credits: React.FC<CreditsProps> = ({ ...props }) => {
           isExternal
           title="https://knotsanalytics.com/"
         >
-          Fishing Prediction maps is offered by KNOTS
+          Fishing Prediction Maps is offered by KNOTS
         </Link>
       </Text>
     </Card>

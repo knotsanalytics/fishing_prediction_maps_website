@@ -78,7 +78,7 @@ const IntroModal: React.FC<IntroModalProps> = ({ isModalOpen, content }) => {
               objectFit="contain"
               w={"100%"}
               src={images[stepIdx]}
-              alt="Fishing Prediction map screenshot"
+              alt="Fishing Prediction Map screenshot"
               loading="eager"
             />
           </Box>

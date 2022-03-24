@@ -109,7 +109,7 @@ const Info: React.FC<InfoProps> = ({ label, content, ...props }) => {
                 objectFit="contain"
                 w={64}
                 src={"/logo.png"}
-                alt="Fishing Prediction map screenshot"
+                alt="Fishing Prediction Map screenshot"
                 margin={"auto"}
                 mt={10}
               />

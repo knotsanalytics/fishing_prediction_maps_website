@@ -1,3 +1,3 @@
-# Fishing prediction maps
+# Fishing Prediction Maps
 
 👉 [Website](https://fishingpredictionmaps.com/) 👈

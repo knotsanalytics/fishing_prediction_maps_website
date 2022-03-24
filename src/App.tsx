@@ -564,7 +564,7 @@ function App() {
       {data && (
         <Info
           position={"absolute"}
-          label={"Info about this map"}
+          label={"Info about the maps"}
           left={4}
           top={36}
           content={data.info}
