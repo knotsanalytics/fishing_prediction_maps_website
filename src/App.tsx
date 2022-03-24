@@ -400,6 +400,12 @@ function App() {
     [data]
   );
 
+  // Re-arrange layers on style load
+  const onStyleLoad = useCallback((e) => {
+    mapRef.current.moveLayer("landcover", "hillshade");
+    mapRef.current.moveLayer("landuse", "hillshade");
+  }, []);
+
   return (
     <Box position={"relative"} h={"100vh"} w={"100vw"}>
       {/* Base Map */}
@@ -426,6 +432,7 @@ function App() {
         onIdle={onIdle}
         onError={onMapError}
         onLoad={onMapLoad}
+        onStyleData={onStyleLoad}
       >
         {/* Land Buffer */}
         <Source
