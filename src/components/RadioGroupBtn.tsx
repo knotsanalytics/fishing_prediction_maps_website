@@ -110,7 +110,7 @@ const RadioGroupBtn: React.FC<RadioGroupBtnProps> = ({
                     <RadioButtonImg
                       {...radio}
                       val={value}
-                      imgSrc={`/${value}.png`}
+                      imgSrc={`/images/${value}.png`}
                     ></RadioButtonImg>
                     <Text fontSize={"xs"}>{value}</Text>
                   </VStack>
