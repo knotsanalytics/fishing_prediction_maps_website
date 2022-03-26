@@ -220,6 +220,7 @@ function App() {
       setMapStyle(MapStyle.GRAY);
       darkMode.setColorMode("light");
     }
+
     localStorage.setItem("theme", theme);
   };
 
@@ -318,6 +319,8 @@ function App() {
   // Change markers values on day change
   // and end loadng state of species
   const onIdle = useCallback(() => {
+    setSpeciaLoading(false);
+    console.log("idle");
     if (markersArray.length && selectedDay !== prevDay) {
       const els = markersArray;
       const map = mapRef.current;
@@ -337,7 +340,6 @@ function App() {
       setPrevDay(selectedDay);
       setMarkersArray(els);
     }
-    setSpeciaLoading(false);
     if (!localStorage.getItem("visited")) {
       setIntroModalOpen(true);
       localStorage.setItem("visited", "true");
@@ -402,8 +404,16 @@ function App() {
 
   // Re-arrange layers on style load
   const onStyleLoad = useCallback((e) => {
-    mapRef.current.moveLayer("landcover", "hillshade");
-    mapRef.current.moveLayer("landuse", "hillshade");
+    // only move layers if necessary
+    if (
+      mapRef.current
+        .getStyle()
+        .layers.map((e: any) => e.id)
+        .indexOf("landcover") < 3
+    ) {
+      mapRef.current.moveLayer("landcover", "land-structure-polygon");
+      mapRef.current.moveLayer("landuse", "land-structure-polygon");
+    }
   }, []);
 
   return (
