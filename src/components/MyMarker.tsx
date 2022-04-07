@@ -89,6 +89,7 @@ const MyMarker: React.FC<MyMarkerProps> = ({
           <PopoverCloseButton
             onClick={(e) => {
               setShowPopup(false);
+              onClick();
               e.preventDefault();
               e.stopPropagation();
             }}
@@ -101,16 +102,35 @@ const MyMarker: React.FC<MyMarkerProps> = ({
                 fontWeight={"bold"}
                 whiteSpace={"nowrap"}
                 colorScheme="green"
+                minW={"calc(50% - 4px)"}
               >
                 FP: {marker.value}
               </Tag>
-              <Text fontSize={"sm"}>
+              <Text fontSize={"sm"} minW={"calc(50% - 4px)"}>
                 {new Date(date).toLocaleDateString("en-GB", {
                   weekday: "short",
                   day: "numeric",
                   month: "short",
                 })}
               </Text>
+            </HStack>
+            <HStack marginTop={4} marginBottom={2}>
+              <Tag
+                fontSize={"sm"}
+                textAlign="center"
+                whiteSpace={"nowrap"}
+                minW={"calc(50% - 4px)"}
+              >
+                Lat: {marker.lat.toFixed(2)}
+              </Tag>
+              <Tag
+                fontSize={"sm"}
+                textAlign="center"
+                whiteSpace={"nowrap"}
+                minW={"calc(50% - 4px)"}
+              >
+                Lon: {marker.lng.toFixed(2)}
+              </Tag>
             </HStack>
           </PopoverBody>
         </PopoverContent>

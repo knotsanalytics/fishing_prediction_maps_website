@@ -320,7 +320,6 @@ function App() {
   // and end loadng state of species
   const onIdle = useCallback(() => {
     setSpeciaLoading(false);
-    console.log("idle");
     if (markersArray.length && selectedDay !== prevDay) {
       const els = markersArray;
       const map = mapRef.current;
@@ -383,7 +382,6 @@ function App() {
 
   // Show toast
   const onMapError = useCallback((e) => {
-    console.log(e);
     toast({
       title: `Uh oh, something went wrong.`,
       status: "error",
